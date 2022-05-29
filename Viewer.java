@@ -1,8 +1,11 @@
 package cinema;
 
+import java.util.ArrayList;
+
 public class Viewer {
 	private String nickname;
 	private int age;
+	private ArrayList<Cinema> viewedFilmsList;
 	private int viewedFilmsCount;
 	
 	public String getNickname() {
@@ -21,13 +24,18 @@ public class Viewer {
 	public void setAge(int age) {
 		this.age = (age < 0)? 18 : age;
 	}
-	public void setViewedFilmsCount(int count) {
-		this.viewedFilmsCount = (count < 0)? 0 : count;
+	public void setViewedFilmsList(ArrayList<Cinema> films) {
+		if(films != null) {
+			for(Cinema film : films) {
+				if(film != null) this.viewedFilmsList.add(film);
+			}
+		}
 	}
 	
-	public Viewer(String nickname, int age, int viewedFilmsCount) {
+	public Viewer(String nickname, int age) {
 		setNickname(nickname);
 		setAge(age);
-		setViewedFilmsCount(viewedFilmsCount);
+		this.viewedFilmsList = new ArrayList<Cinema>();
+		this.viewedFilmsCount = this.viewedFilmsList.size();
 	}
 }
